@@ -1,0 +1,69 @@
+name: Dev Container Publish
+description: Package and publish development container assets
+author: devcontainers
+branding:
+  icon: box
+  color: blue
+inputs:
+  generate-docs:
+    required: false
+    default: 'false'
+    description: >-
+      Parse machine-readable (.json) configuration files and commit standardized
+      documentation
+  disable-schema-validation:
+    required: false
+    default: 'false'
+    description: >-
+      Disables validation of the schema of metadata files (devcontainer-feature.json)
+  validate-only:
+    required: false
+    default: 'false'
+    description: >-
+      Validate the schema of metadata files (devcontainer-feature.json)
+      and exit without publishing. (Cannot be combined with any publishing step).
+  # Feature specific inputs
+  publish-features:
+    required: false
+    default: 'false'
+    description: >-
+      (true/false) Enable publishing Dev Container Feature(s).
+      Cannot be combined with publish-templates.
+  base-path-to-features:
+    required: false
+    default: ''
+    description: Relative path to the folder containing Dev Container Feature(s)
+  oci-registry:
+    required: false
+    description: >-
+      Name of the OCI registry that implements the OCI Artifact Distribution
+      Specification
+  features-namespace:
+    required: false
+    description: >- 
+      Published Feature IDs will be prefixed with the namespace.
+      If omitted, this value will default to the source repo name
+  # Template specific inputs
+  publish-templates:
+    required: false
+    default: 'false'
+    description: >-
+      (true/false) Enable publishing Dev Container Template(s).
+      Cannot be combined with publish-features.
+  base-path-to-templates:
+    required: false
+    default: ''
+    description: Relative path to the folder containing Dev Container Template(s)
+  oci-registry-for-templates:
+    required: false
+    description: >-
+      Name of the OCI registry that implements the OCI Artifact Distribution
+      Specification
+  templates-namespace:
+    required: false
+    description: >- 
+      Published Template IDs will be prefixed with the namespace.
+      If omitted, this value will default to the source repo name
+runs:
+  using: node16
+  main: dist/index.js
